@@ -3,7 +3,7 @@ layout: default
 title: Shop
 ---
 <div class="container page-container">
-    <a href="{{ '/' | relative_url }}" class="btn btn-outline back-btn">
+    <a href="index.html" class="btn btn-outline back-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Vissza a főoldalra
     </a>
@@ -41,7 +41,7 @@ title: Shop
                 <li>Egyedi fejlesztések</li>
                 <li>Dedikált menedzser</li>
             </ul>
-            <a href="{{ '/about' | relative_url }}" class="btn btn-outline">Kapcsolat</a>
+            <a href="about.html" class="btn btn-outline">Kapcsolat</a>
         </div>
     </div>
 </div>
