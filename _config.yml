@@ -1,0 +1,6 @@
+title: "CRM Bázis"
+description: "Modern, magyar nyelvű CRM platform kis- és középvállalkozások számára. Könnyed ügyfélkezelés menet közben."
+url: ""
+baseurl: ""
+api_endpoint: "https://jsonplaceholder.typicode.com/posts" # Configurable API endpoint
+markdown: kramdown
