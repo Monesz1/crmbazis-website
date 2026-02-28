@@ -3,14 +3,40 @@ layout: default
 title: Főoldal
 ---
 <section class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-glow-2"></div>
     <div class="container hero-inner">
         <div class="hero-content">
-            <span class="badge">Új generációs CRM</span>
-            <h1 class="hero-title">Vezesse vállalkozását <span class="text-primary">könnyedén</span>, bárhonnan.</h1>
+            <div class="badge">
+                <span class="pulse-dot"></span> Új generációs CRM
+            </div>
+            <h1 class="hero-title">Vezesse vállalkozását <br/><span class="text-gradient">könnyedén</span>, bárhonnan.</h1>
             <p class="hero-subtitle">A CRM Bázis segít automatizálni az értékesítést, kezelni az ügyfélkapcsolatokat és növelni a bevételt – mindezt egy modern, magyar nyelvű felületen.</p>
             <div class="hero-actions">
                 <button class="btn btn-primary btn-large register-btn">Regisztráció</button>
                 <a href="{{ '/about' | relative_url }}" class="btn btn-outline btn-large">Tudj meg többet</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="dashboard-mockup">
+                <div class="mockup-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-sidebar">
+                        <div class="mockup-sidebar-item" style="background: var(--color-primary); opacity: 0.8;"></div>
+                        <div class="mockup-sidebar-item"></div>
+                        <div class="mockup-sidebar-item"></div>
+                        <div class="mockup-sidebar-item"></div>
+                    </div>
+                    <div class="mockup-content">
+                        <div class="mockup-card"></div>
+                        <div class="mockup-card"></div>
+                        <div class="mockup-card full"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
