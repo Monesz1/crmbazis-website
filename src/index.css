@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-hungarian-red: #CE2939;
+  --color-hungarian-green: #477050;
+  --color-crm-dark: #0F172A;
+  --color-crm-accent: #10B981;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-crm-dark bg-slate-50;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+.glass-header {
+  @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-hungarian-green hover:bg-emerald-700 text-white rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg active:scale-95;
+}
+
+.btn-outline {
+  @apply px-6 py-3 border-2 border-slate-200 hover:border-hungarian-red hover:text-hungarian-red rounded-lg font-semibold transition-all duration-300;
+}
