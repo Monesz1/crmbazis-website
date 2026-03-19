@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. GSAP Animations (Hero Section)
-    // Check if GSAP is loaded and we are on the homepage (hero exists)
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle && typeof gsap !== 'undefined') {
         gsap.from('.badge', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' });
@@ -49,53 +48,152 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from('.hero-actions', { y: 30, opacity: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
     }
 
-    // 5. Registration API Call (Fetch)
+    // 5. Animated Tiles (Shop Page)
+    const tiles = document.querySelectorAll('.animated-tile');
+    if (tiles.length > 0 && typeof gsap !== 'undefined') {
+        gsap.to(tiles, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        });
+    }
+
+    // 6. Registration Modal Logic
+    const regModal = document.getElementById('regModal');
+    const regModalClose = document.getElementById('regModalClose');
     const registerBtns = document.querySelectorAll('.register-btn');
-    
+    const regForm = document.getElementById('regForm');
+
     registerBtns.forEach(btn => {
-        btn.addEventListener('click', async (e) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (regModal) regModal.classList.add('active');
+        });
+    });
+
+    if (regModalClose) {
+        regModalClose.addEventListener('click', () => regModal.classList.remove('active'));
+    }
+
+    if (regForm) {
+        regForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get endpoint from Jekyll config injected into window
-            const endpoint = window.siteConfig?.apiEndpoint;
-            
-            if (!endpoint) {
-                console.error('API endpoint is not configured.');
-                alert('Hiba: Az API végpont nincs beállítva.');
+            // Check HTML5 validation
+            if (!regForm.checkValidity()) {
+                e.stopPropagation();
+                regForm.classList.add('was-validated');
                 return;
             }
+            
+            const submitBtn = regForm.querySelector('button[type="submit"]');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnSpinner = submitBtn.querySelector('.btn-spinner');
 
-            // Visual feedback
-            const originalText = btn.textContent;
-            btn.textContent = 'Feldolgozás...';
-            btn.style.opacity = '0.7';
-            btn.style.pointerEvents = 'none';
-
-            try {
-                console.log(`Calling API: ${endpoint}`);
+            // Show loading state
+            submitBtn.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnSpinner) btnSpinner.style.display = 'block';
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Sikeres regisztráció!');
+                regModal.classList.remove('active');
+                regForm.classList.remove('was-validated');
+                regForm.reset();
                 
-                // Simulated fetch call using the configured endpoint
-                const response = await fetch(endpoint, {
-                    method: 'GET', // Using GET for jsonplaceholder placeholder
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+                // Reset button state
+                submitBtn.disabled = false;
+                if (btnText) btnText.style.display = 'block';
+                if (btnSpinner) btnSpinner.style.display = 'none';
+            }, 1500); // 1.5 seconds simulated delay
+        });
+    }
 
-                if (response.ok) {
-                    alert('Sikeres regisztráció! (API hívás sikeres: ' + endpoint + ')');
-                } else {
-                    throw new Error('API hiba történt');
-                }
-            } catch (error) {
-                console.error('Registration error:', error);
-                alert('Sikeres regisztráció szimulálva! (A teszt API végpont válaszolt)');
-            } finally {
-                // Restore button state
-                btn.textContent = originalText;
-                btn.style.opacity = '1';
-                btn.style.pointerEvents = 'auto';
+    // 7. Video Modal Logic (Learn Page)
+    const videoModal = document.getElementById('videoModal');
+    const videoModalClose = document.getElementById('videoModalClose');
+    const demoBtn = document.getElementById('demoBtn');
+
+    if (demoBtn && videoModal) {
+        demoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            videoModal.classList.add('active');
+        });
+        videoModalClose.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            // Stop video playback on close
+            const iframe = videoModal.querySelector('iframe');
+            if (iframe) {
+                const src = iframe.src;
+                iframe.src = src;
             }
         });
+    }
+
+    // Close modals on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === regModal) regModal.classList.remove('active');
+        if (e.target === videoModal) {
+            videoModal.classList.remove('active');
+            const iframe = videoModal.querySelector('iframe');
+            if (iframe) iframe.src = iframe.src;
+        }
+    });
+
+    // 8. Handle ?scrollTo=demoBtn query parameter for smooth page transitions
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('scrollTo') === 'demoBtn') {
+        const demoBtn = document.getElementById('demoBtn');
+        if (demoBtn) {
+            // Wait for the initial page fade-in animation to complete
+            setTimeout(() => {
+                // Smoothly scroll down to the button
+                demoBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Wait for the scroll animation to finish before pulsing
+                setTimeout(() => {
+                    demoBtn.classList.add('animate-attention');
+                    
+                    // Remove class after animation completes (3 pulses * 1.2s = 3600ms)
+                    setTimeout(() => {
+                        demoBtn.classList.remove('animate-attention');
+                    }, 3600);
+                }, 800); // Approximate scroll duration
+                
+                // Clean up the URL so refreshing doesn't trigger the scroll again
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }, 400); // Wait 400ms at the top of the page before scrolling
+        }
+    }
+
+    // 9. Page Transition Exit Animation
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        
+        // Ignore external links, new tabs, or links that don't have an href
+        if (!href || link.target === '_blank' || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        
+        // Ignore pure hash links (e.g., href="#") which are used for modals or in-page anchors
+        if (href.startsWith('#')) return;
+        
+        // Ignore links that point to the exact same page but just change the hash
+        if (link.pathname === window.location.pathname && link.search === window.location.search && link.hash) return;
+        
+        // If it's an internal HTML link, intercept it
+        if (link.host === window.location.host) {
+            e.preventDefault();
+            document.body.classList.add('page-exit');
+            
+            // Wait for the exit animation to finish (300ms) before navigating
+            setTimeout(() => {
+                window.location.href = link.href;
+            }, 280); // Slightly less than 300ms to ensure a seamless handoff
+        }
     });
 });

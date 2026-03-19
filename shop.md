@@ -8,40 +8,29 @@ title: Shop
         Vissza a főoldalra
     </a>
     
-    <h1 class="page-title">CRM Csomagok és Árak</h1>
-    <p class="page-subtitle">Válassza ki a vállalkozásához legjobban illő csomagot.</p>
+    <h1 class="page-title">CRM Modulok és Kiegészítők</h1>
+    <p class="page-subtitle">Bővítse rendszerét az igényeinek megfelelően.</p>
 
-    <div class="pricing-grid">
-        <div class="pricing-card">
-            <h3>Starter</h3>
-            <div class="price">9.900 Ft<span>/hó</span></div>
-            <ul>
-                <li>3 felhasználó</li>
-                <li>Alap riportok</li>
-                <li>Email támogatás</li>
-            </ul>
-            <button class="btn btn-outline register-btn">Kiválasztom</button>
+    <div class="tile-grid">
+        <div class="animated-tile">
+            <h3>Marketing Automatizáció</h3>
+            <p>Hírlevelek, csepegtető kampányok és automatikus utánkövetés.</p>
+            <button class="btn btn-outline w-full" style="margin-top: 1rem;">Részletek</button>
         </div>
-        <div class="pricing-card popular">
-            <div class="badge-popular">Népszerű</div>
-            <h3>Pro</h3>
-            <div class="price">19.900 Ft<span>/hó</span></div>
-            <ul>
-                <li>10 felhasználó</li>
-                <li>Haladó automatizáció</li>
-                <li>Telefonos támogatás</li>
-            </ul>
-            <button class="btn btn-primary register-btn">Kiválasztom</button>
+        <div class="animated-tile">
+            <h3>Számlázó Integráció</h3>
+            <p>Közvetlen kapcsolat a népszerű magyar számlázó programokkal.</p>
+            <button class="btn btn-outline w-full" style="margin-top: 1rem;">Részletek</button>
         </div>
-        <div class="pricing-card">
-            <h3>Enterprise</h3>
-            <div class="price">Egyedi árazás</div>
-            <ul>
-                <li>Korlátlan felhasználó</li>
-                <li>Egyedi fejlesztések</li>
-                <li>Dedikált menedzser</li>
-            </ul>
-            <a href="about.html" class="btn btn-outline">Kapcsolat</a>
+        <div class="animated-tile">
+            <h3>Ügyfélszolgálati Modul</h3>
+            <p>Hibajegykezelés, tudásbázis és élő chat integráció egy helyen.</p>
+            <button class="btn btn-outline w-full" style="margin-top: 1rem;">Részletek</button>
+        </div>
+        <div class="animated-tile">
+            <h3>Egyedi Riportkészítő</h3>
+            <p>Hozzon létre saját dashboardokat és automatikus jelentéseket.</p>
+            <button class="btn btn-outline w-full" style="margin-top: 1rem;">Részletek</button>
         </div>
     </div>
 </div>

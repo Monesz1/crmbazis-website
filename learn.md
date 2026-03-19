@@ -8,24 +8,36 @@ title: Learn
         Vissza a főoldalra
     </a>
     
-    <h1 class="page-title">Tudástár és Blog</h1>
-    <p class="page-subtitle">Hasznos cikkek és útmutatók a CRM sikeres bevezetéséhez.</p>
+    <h1 class="page-title">CRM Rendszerek: Előnyök és Hátrányok</h1>
+    
+    <div class="content-block">
+        <h2>Előnyök (Pro)</h2>
+        <ul>
+            <li><strong>Központosított adatok:</strong> Minden ügyfélinformáció egyetlen, biztonságos helyen található.</li>
+            <li><strong>Automatizált munkafolyamatok:</strong> Kevesebb adminisztráció, több idő az érdemi munkára.</li>
+            <li><strong>Skálázhatóság:</strong> A rendszer együtt nő a vállalkozásával.</li>
+            <li><strong>Jobb konverzió:</strong> A leadek hatékonyabb nyomon követése növeli a sikeres üzletkötések arányát.</li>
+        </ul>
 
-    <div class="article-list">
-        <article class="article-card">
-            <span class="article-date">2024. Március 10.</span>
-            <h2><a href="#">Hogyan válasszunk CRM rendszert?</a></h2>
-            <p>A megfelelő CRM kiválasztása kritikus pont minden vállalkozás életében. Ebben a cikkben végigvesszük a legfontosabb szempontokat, amelyek segítenek a döntésben, és bemutatjuk, miért fontos a skálázhatóság.</p>
-        </article>
-        <article class="article-card">
-            <span class="article-date">2024. Március 05.</span>
-            <h2><a href="#">5 tipp az értékesítés automatizálásához</a></h2>
-            <p>Az automatizáció nem csak időt spórol, de növeli a konverziót is. Mutatjuk, hogyan kezdjen hozzá a folyamatok optimalizálásához, és hogyan használja ki a CRM Bázis beépített eszközeit.</p>
-        </article>
-        <article class="article-card">
-            <span class="article-date">2024. Február 28.</span>
-            <h2><a href="#">Ügyfélélmény javítása adatokkal</a></h2>
-            <p>Az adatok segítenek jobban megérteni az ügyfelek igényeit. Ismerje meg, hogyan építhet lojális ügyfélbázist a megfelelő adatelemzési stratégiákkal.</p>
-        </article>
+        <h2>Hátrányok (Kontra)</h2>
+        <ul>
+            <li><strong>Bevezetési idő:</strong> A rendszer testreszabása és a kollégák betanítása időt igényel.</li>
+            <li><strong>Kezdeti költségek:</strong> Bár hosszú távon megtérül, a bevezetés befektetést igényel.</li>
+            <li><strong>Adatminőség függőség:</strong> A rendszer csak annyira jó, amennyire a belevitt adatok pontosak.</li>
+        </ul>
+
+        <div style="margin-top: 3rem; text-align: center;">
+            <button id="demoBtn" class="btn btn-primary btn-large">Show me a demo</button>
+        </div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal-overlay">
+    <div class="modal-content video-modal">
+        <button class="modal-close" id="videoModalClose" aria-label="Bezárás">&times;</button>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="CRM Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
 </div>

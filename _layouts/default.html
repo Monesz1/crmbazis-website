@@ -26,6 +26,50 @@
     
     {% include footer.html %}
     
+    <!-- Registration Modal -->
+    <div id="regModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="regModalClose" aria-label="Bezárás">&times;</button>
+            <h2>Regisztráció</h2>
+            <form id="regForm" class="modal-form" novalidate>
+                <div class="form-group">
+                    <label for="companyName">Cégnév</label>
+                    <input type="text" id="companyName" required minlength="2">
+                    <div class="invalid-feedback">A cégnév megadása kötelező (min. 2 karakter).</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lastName">Vezetéknév</label>
+                        <input type="text" id="lastName" required minlength="2">
+                        <div class="invalid-feedback">A vezetéknév kötelező.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Keresztnév</label>
+                        <input type="text" id="firstName" required minlength="2">
+                        <div class="invalid-feedback">A keresztnév kötelező.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email cím</label>
+                    <input type="email" id="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                    <div class="invalid-feedback">Kérjük, adjon meg egy érvényes email címet.</div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Telefonszám</label>
+                    <input type="tel" id="mobile" required pattern="^\+?[0-9\s\-\(\)]{8,20}$">
+                    <div class="invalid-feedback">Érvényes telefonszám szükséges (pl. +36 30 123 4567).</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-full" style="margin-top: 1rem; position: relative; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                    <span class="btn-text">Küldés</span>
+                    <svg class="btn-spinner" style="display: none; width: 20px; height: 20px; animation: spin 1s linear infinite;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity: 0.25;"></circle>
+                        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" style="opacity: 0.75;"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" aria-label="Ugrás az oldal tetejére" class="scroll-to-top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>

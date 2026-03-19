@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About
+title: A CRM Előnyei
 ---
 <div class="container page-container">
     <a href="index.html" class="btn btn-outline back-btn">
@@ -8,23 +8,21 @@ title: About
         Vissza a főoldalra
     </a>
     
-    <h1 class="page-title">Rólunk</h1>
+    <h1 class="page-title">Miért éri meg CRM rendszert használni?</h1>
     
     <div class="content-block">
-        <p class="lead-text">A CRM Bázis csapata elkötelezett amellett, hogy a legmodernebb technológiát tegye elérhetővé a magyar kis- és középvállalkozások számára.</p>
+        <p class="lead-text">A modern üzleti környezetben a megfelelő ügyfélkapcsolat-kezelés (CRM) elengedhetetlen a növekedéshez.</p>
         
-        <h2>Küldetésünk</h2>
-        <p>Célunk, hogy lebontsuk a technológiai korlátokat és egy olyan eszközt adjunk a vállalkozók kezébe, amellyel valódi növekedést érhetnek el. Hiszünk abban, hogy a szoftvernek kell alkalmazkodnia az üzlethez, nem pedig fordítva.</p>
+        <h2>1. Növekvő Értékesítés</h2>
+        <p>A CRM rendszerek automatizálják az értékesítési tölcsért, így a csapat fókuszálhat a lezárásokra. A statisztikák szerint a CRM bevezetése akár 29%-kal is növelheti az értékesítési volument.</p>
         
-        <h2>Értékeink</h2>
-        <ul>
-            <li><strong>Ügyfélközpontúság:</strong> Minden fejlesztésünket a felhasználói visszajelzések vezérlik.</li>
-            <li><strong>Innováció:</strong> Folyamatosan keressük a legújabb technológiai megoldásokat.</li>
-            <li><strong>Átláthatóság:</strong> Nincsenek rejtett költségek vagy apróbetűs részek.</li>
-            <li><strong>Megbízhatóság:</strong> Stabil, biztonságos rendszer az év minden napján.</li>
-        </ul>
-
-        <h2>A Csapat</h2>
-        <p>Több mint 10 éves tapasztalattal rendelkezünk a szoftverfejlesztés és az üzleti folyamatok optimalizálása terén. Szakértőink folyamatosan azon dolgoznak, hogy a CRM Bázis a piac legjobb megoldása maradjon.</p>
+        <h2>2. Jobb Ügyfélélmény</h2>
+        <p>Minden interakció, email és telefonhívás egy helyen van rögzítve. Az ügyfelek úgy érzik, hogy valóban ismerik őket, ami növeli a hűséget és az elégedettséget.</p>
+        
+        <h2>3. Adatalapú Döntések</h2>
+        <p>A beépített riportok és analitikák segítségével valós idejű képet kaphat a cég teljesítményéről. Nem kell többé Excel táblázatokkal bajlódni.</p>
+        
+        <h2>4. Hatékony Csapatmunka</h2>
+        <p>A feladatok delegálása és a belső kommunikáció sokkal egyszerűbbé válik. Mindenki látja, hol tart egy adott projekt vagy ügyfélkezelés.</p>
     </div>
 </div>

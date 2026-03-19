@@ -42,9 +42,16 @@ function renderJekyll(filePath) {
 
 // Routes
 app.get('/', (req, res) => res.send(renderJekyll(path.join(__dirname, 'index.html'))));
+app.get('/index.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'index.html'))));
+
 app.get('/shop', (req, res) => res.send(renderJekyll(path.join(__dirname, 'shop.md'))));
+app.get('/shop.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'shop.md'))));
+
 app.get('/learn', (req, res) => res.send(renderJekyll(path.join(__dirname, 'learn.md'))));
+app.get('/learn.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'learn.md'))));
+
 app.get('/about', (req, res) => res.send(renderJekyll(path.join(__dirname, 'about.md'))));
+app.get('/about.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'about.md'))));
 
 const PORT = 3000;
 app.listen(PORT, '0.0.0.0', () => {
