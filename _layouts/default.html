@@ -18,13 +18,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    {% include header.html %}
-    
-    <main class="main-content">
-        {{ content }}
-    </main>
-    
-    {% include footer.html %}
+    <div class="page-transition-wrapper">
+        {% include header.html %}
+        
+        <main class="main-content">
+            {{ content }}
+        </main>
+        
+        {% include footer.html %}
+    </div>
     
     <!-- Registration Modal -->
     <div id="regModal" class="modal-overlay">
@@ -67,6 +69,15 @@
                     </svg>
                 </button>
             </form>
+            <div id="regSuccessState" style="display: none; text-align: center; padding: 2rem 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="width: 64px; height: 64px; margin: 0 auto 1rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 style="margin-bottom: 1rem;">Sikeres regisztráció!</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">Elküldtük a visszaigazoló emailt a(z) <strong id="successEmail"></strong> címre.</p>
+                <a href="https://mail.google.com" target="_blank" class="btn btn-primary w-full" style="margin-bottom: 0.5rem; display: inline-block;">Tovább a Gmail-be</a>
+                <button id="regSuccessCloseBtn" class="btn btn-outline w-full">Bezárás</button>
+            </div>
         </div>
     </div>
 

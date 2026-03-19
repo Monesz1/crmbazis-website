@@ -65,16 +65,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const regModalClose = document.getElementById('regModalClose');
     const registerBtns = document.querySelectorAll('.register-btn');
     const regForm = document.getElementById('regForm');
+    const regSuccessState = document.getElementById('regSuccessState');
+    const successEmail = document.getElementById('successEmail');
+    const regSuccessCloseBtn = document.getElementById('regSuccessCloseBtn');
+
+    function resetRegModal() {
+        if (regForm) {
+            regForm.style.display = 'flex';
+            regForm.classList.remove('was-validated');
+            regForm.reset();
+        }
+        if (regSuccessState) {
+            regSuccessState.style.display = 'none';
+        }
+    }
+
+    function closeRegModal() {
+        if (regModal) {
+            regModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Wait for transition to finish before resetting
+            setTimeout(resetRegModal, 300);
+        }
+    }
 
     registerBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (regModal) regModal.classList.add('active');
+            resetRegModal();
+            if (regModal) {
+                regModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         });
     });
 
     if (regModalClose) {
-        regModalClose.addEventListener('click', () => regModal.classList.remove('active'));
+        regModalClose.addEventListener('click', closeRegModal);
+    }
+    
+    if (regSuccessCloseBtn) {
+        regSuccessCloseBtn.addEventListener('click', closeRegModal);
     }
 
     if (regForm) {
@@ -97,18 +128,44 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnText) btnText.style.display = 'none';
             if (btnSpinner) btnSpinner.style.display = 'block';
             
-            // Simulate API call
-            setTimeout(() => {
-                alert('Sikeres regisztráció!');
-                regModal.classList.remove('active');
-                regForm.classList.remove('was-validated');
-                regForm.reset();
-                
+            // Gather form data
+            const formData = {
+                company_name: document.getElementById('companyName').value,
+                last_name: document.getElementById('lastName').value,
+                first_name: document.getElementById('firstName').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value
+            };
+
+            // Call backend API
+            fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success state
+                    regForm.style.display = 'none';
+                    if (successEmail) successEmail.textContent = formData.email;
+                    if (regSuccessState) regSuccessState.style.display = 'block';
+                } else {
+                    alert(data.error || 'Hiba történt a regisztráció során.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hálózati hiba történt. Kérjük, próbálja újra.');
+            })
+            .finally(() => {
                 // Reset button state
                 submitBtn.disabled = false;
                 if (btnText) btnText.style.display = 'block';
                 if (btnSpinner) btnSpinner.style.display = 'none';
-            }, 1500); // 1.5 seconds simulated delay
+            });
         });
     }
 
@@ -121,9 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
         demoBtn.addEventListener('click', (e) => {
             e.preventDefault();
             videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
         videoModalClose.addEventListener('click', () => {
             videoModal.classList.remove('active');
+            document.body.style.overflow = '';
             // Stop video playback on close
             const iframe = videoModal.querySelector('iframe');
             if (iframe) {
@@ -135,9 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close modals on outside click
     window.addEventListener('click', (e) => {
-        if (e.target === regModal) regModal.classList.remove('active');
+        if (e.target === regModal) closeRegModal();
         if (e.target === videoModal) {
             videoModal.classList.remove('active');
+            document.body.style.overflow = '';
             const iframe = videoModal.querySelector('iframe');
             if (iframe) iframe.src = iframe.src;
         }
