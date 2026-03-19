@@ -1,6 +1,6 @@
 title: "CRM Bázis"
 description: "Modern, magyar nyelvű CRM platform kis- és középvállalkozások számára. Könnyed ügyfélkezelés menet közben."
-url: "https://Monesz1.github.io"
-baseurl: "https://github.com/Monesz1/crmbazis-website/"
+url: ""
+baseurl: ""
 api_endpoint: "https://jsonplaceholder.typicode.com/posts" # Configurable API endpoint
 markdown: kramdown

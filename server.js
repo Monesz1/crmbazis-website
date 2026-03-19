@@ -30,7 +30,6 @@ function renderJekyll(filePath) {
         layout = layout.replace(/{{ site\.title }}/g, 'CRM Bázis');
         layout = layout.replace(/{{ site\.description }}/g, 'Modern, magyar nyelvű CRM platform.');
         layout = layout.replace(/{{ site\.api_endpoint }}/g, 'https://jsonplaceholder.typicode.com/posts');
-        layout = layout.replace(/{{ site\.baseurl }}/g, '');
         
         // Handle relative_url filter
         layout = layout.replace(/{{ '([^']+)' \| relative_url }}/g, '$1');
@@ -70,37 +69,18 @@ app.post('/api/register', async (req, res) => {
         const cleanCompanyName = company_name.toLowerCase().replace(/[^a-z0-9]/g, '');
         const subdomain = `${cleanCompanyName}.opensoft.hu`;
 
-        const githubToken = process.env.GITHUB_PAT;
-        if (!githubToken) {
-            console.error('Missing GITHUB_PAT environment variable');
-            throw new Error('A szerver nincs megfelelően konfigurálva a GitHub integrációhoz.');
-        }
-
-        const response = await fetch('https://api.github.com/repos/Monesz1/vtiger-opensoft/dispatches', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${githubToken}`,
-                'Accept': 'application/vnd.github+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                event_type: 'display-contact',
-                client_payload: {
-                    subdomain: subdomain,
-                    company_name: company_name,
-                    last_name: last_name,
-                    first_name: first_name,
-                    email: email,
-                    mobile: mobile
-                }
-            })
+        // Log the registration (since GitHub integration is removed)
+        console.log('New Registration Received:', {
+            subdomain,
+            company_name,
+            last_name,
+            first_name,
+            email,
+            mobile
         });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('GitHub API Error:', errorText);
-            throw new Error(`GitHub API responded with status ${response.status}`);
-        }
+        // Simulate a slight delay for realism
+        await new Promise(resolve => setTimeout(resolve, 800));
 
         res.json({ success: true, message: 'Sikeres regisztráció!', subdomain });
     } catch (error) {
