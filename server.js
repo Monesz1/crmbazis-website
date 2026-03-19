@@ -30,6 +30,7 @@ function renderJekyll(filePath) {
         layout = layout.replace(/{{ site\.title }}/g, 'CRM Bázis');
         layout = layout.replace(/{{ site\.description }}/g, 'Modern, magyar nyelvű CRM platform.');
         layout = layout.replace(/{{ site\.api_endpoint }}/g, 'https://jsonplaceholder.typicode.com/posts');
+        layout = layout.replace(/{{ site\.baseurl }}/g, '');
         
         // Handle relative_url filter
         layout = layout.replace(/{{ '([^']+)' \| relative_url }}/g, '$1');
