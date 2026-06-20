@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="container header-inner">
-        <a href="index.html" class="brand">
+        <a href="{{ '/' | relative_url }}" class="brand">
             <span class="brand-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </span>
@@ -25,27 +25,27 @@
         <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Menü megnyitása">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
-
+ 
         <nav id="mainNav" class="main-nav">
             <ul class="nav-list">
                 <li class="has-dropdown">
                     <a href="#" class="nav-link">Csomagok <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></a>
                     <ul class="dropdown-menu">
-                        <li><a href="alap-csomag.html">Alap Csomag</a></li>
-                        <li><a href="pro-csomag.html">Pro Csomag</a></li>
-                        <li><a href="premium-csomag.html">Prémium Csomag</a></li>
+                        <li><a href="{{ '/alap-csomag.html' | relative_url }}">Alap Csomag</a></li>
+                        <li><a href="{{ '/pro-csomag.html' | relative_url }}">Pro Csomag</a></li>
+                        <li><a href="{{ '/premium-csomag.html' | relative_url }}">Prémium Csomag</a></li>
                     </ul>
                 </li>
-                <li><a href="araink.html" class="nav-link">Áraink</a></li>
-                <li><a href="tudasbazis.html" class="nav-link">Tudásbázis</a></li>
+                <li><a href="{{ '/araink.html' | relative_url }}" class="nav-link">Áraink</a></li>
+                <li><a href="{{ '/tudasbazis.html' | relative_url }}" class="nav-link">Tudásbázis</a></li>
                 <li class="has-dropdown">
-                    <a href="informaciok.html" class="nav-link">Információk <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></a>
+                    <a href="#" class="nav-link">Információk <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></a>
                     <ul class="dropdown-menu">
-                        <li><a href="kapcsolat.html">Kapcsolat</a></li>
-                        <li><a href="a-csapatrol.html">A csapatról</a></li>
-                        <li><a href="a-crm-bazisrol.html">A CRM Bázisról</a></li>
-                        <li><a href="karrier.html">Karrier</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="{{ '/kapcsolat.html' | relative_url }}">Kapcsolat</a></li>
+                        <li><a href="{{ '/a-csapatrol.html' | relative_url }}">A csapatról</a></li>
+                        <li><a href="{{ '/a-crm-bazisrol.html' | relative_url }}">A CRM Bázisról</a></li>
+                        <li><a href="{{ '/karrier.html' | relative_url }}">Karrier</a></li>
+                        <li><a href="{{ '/blog.html' | relative_url }}">Blog</a></li>
                     </ul>
                 </li>
             </ul>
