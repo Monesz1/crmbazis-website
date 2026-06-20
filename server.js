@@ -78,8 +78,11 @@ app.get('/araink.html', (req, res) => res.send(renderJekyll(path.join(__dirname,
 app.get('/tudasbazis', (req, res) => res.send(renderJekyll(path.join(__dirname, 'tudasbazis.html'))));
 app.get('/tudasbazis.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'tudasbazis.html'))));
 
-app.get('/ajanlatkeres', (req, res) => res.send(renderJekyll(path.join(__dirname, 'ajanlatkeres.html'))));
-app.get('/ajanlatkeres.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'ajanlatkeres.html'))));
+app.get('/regisztracio', (req, res) => res.send(renderJekyll(path.join(__dirname, 'regisztracio.html'))));
+app.get('/regisztracio.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'regisztracio.html'))));
+
+app.get('/ajanlatkeres', (req, res) => res.redirect(301, '/regisztracio.html'));
+app.get('/ajanlatkeres.html', (req, res) => res.redirect(301, '/regisztracio.html'));
 
 // API Routes
 app.post('/api/register', async (req, res) => {
