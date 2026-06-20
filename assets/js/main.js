@@ -19,6 +19,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 2.5 Mobile Dropdown Toggle
+    const dropdowns = document.querySelectorAll('.has-dropdown');
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.nav-link');
+        if (link) {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+
+    // 2.6 Search Toggle
+    const searchToggle = document.getElementById('searchToggle');
+    const searchWrapper = document.getElementById('searchWrapper');
+    const searchInput = document.querySelector('.search-input');
+
+    if (searchToggle && searchWrapper) {
+        searchToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            searchWrapper.classList.toggle('active');
+            if (searchWrapper.classList.contains('active') && searchInput) {
+                setTimeout(() => searchInput.focus(), 100);
+            }
+        });
+
+        // Close search when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchToggle.contains(e.target) && !searchWrapper.contains(e.target)) {
+                searchWrapper.classList.remove('active');
+            }
+        });
+    }
+
     // 3. Scroll to Top Button
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     
@@ -45,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from('.badge', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' });
         gsap.from('.hero-title', { y: 30, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
         gsap.from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
-        gsap.from('.hero-actions', { y: 30, opacity: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+        gsap.from('.hero-packages-grid', { x: 50, opacity: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
     }
 
     // 5. Animated Tiles (Shop Page)

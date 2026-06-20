@@ -1,0 +1,183 @@
+---
+layout: default
+title: "Tudásbázis"
+permalink: /tudasbazis/
+---
+
+<div class="container page-container">
+    <a href="{{ '/' | relative_url }}" class="btn btn-outline back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Vissza a főoldalra
+    </a>
+
+    <section class="knowledge-base" style="margin-top: 2rem;">
+        <h1 class="page-title">Üdvözöljük a Tudásbázisban!</h1>
+        <p class="page-subtitle" style="margin-bottom: 3rem;">Kérdése van a CRM Bázis használatával kapcsolatban? Találja meg a választ azonnal cikkeink és útmutatóink segítségével.</p>
+
+        <!-- Search Bar Section -->
+        <div style="max-width: 650px; margin: 0 auto 4rem; position: relative;">
+            <input type="text" id="kbSearchInput" placeholder="Keressen cikkek, témák vagy kulcsszavak szerint..." style="width: 100%; padding: 1.1rem 1.5rem 1.1rem 3.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: 1.05rem; background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; color: var(--color-text-muted); pointer-events: none;">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+
+        <!-- Categories & Topics Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem;" id="kbGrid">
+            
+            <!-- Category 1: Első lépések -->
+            <div class="kb-category-card" style="background: var(--color-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.5rem; border-radius: 8px; color: var(--color-primary);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.478 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Első lépések & Beállítások</h3>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Kezdő lépések: Saját fiók aktiválása és testreszabása', 'A regisztrációs folyamat után az első lépés a saját cégprofil beállítása. Látogasson el a Beállítások menüpontba, ahol megadhatja a cégnevet, feltöltheti logóját, beállíthatja az adószámot és a pénznemet. Ezt követően hívja meg csapattagjait a Felhasználók kezelése lapon, kiosztva a megfelelő adminisztrátori vagy értékesítői szerepköröket.')"><span>&rarr;</span> Kezdő lépések: Saját fiók aktiválása és testreszabása</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Adatok importálása Excel és CSV fájlokból', 'A meglévő partnerek és kapcsolatok importálásához navigáljon az Ügyfelek menüpontba, majd kattintson az Importálás gombra. Töltse fel a CSV vagy Excel formátumú fájlt. Rendszerünk automatikusan megpróbálja párosítani az oszlopfejléceket (pl. Név, Email, Telefon), de Önnek is lehetősége van manuálisan finomhangolni a társításokat a véglegesítés előtt.')"><span>&rarr;</span> Adatok importálása Excel és CSV fájlokból</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Szerepkörök és jogosultságok kezelése', 'A Pro és Prémium csomagokban részletesen szabályozhatja, ki milyen adatokhoz férhet hozzá. Létrehozhat értékesítői szerepkört, amely csak a saját leadeket látja, míg a menedzseri szint teljes rálátást biztosít a teljes értékesítési csatornára és a statisztikai modulokra.')"><span>&rarr;</span> Szerepkörök és jogosultságok kezelése</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2: Értékesítés -->
+            <div class="kb-category-card" style="background: var(--color-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.5rem; border-radius: 8px; color: var(--color-primary);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Értékesítési tölcsérek & Leadek</h3>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Hogyan építsünk fel egy nyerő értékesítési folyamatot?', 'Az ügyfélszerzési tölcsér fázisait saját igényeire szabhatja (pl. Kapcsolatfelvétel, Igényfelmérés, Ajánlat elküldve, Tárgyalás, Lezárt/Megnyert). Javasoljuk, hogy tartsa tisztán a lépéseket, és minden leadnél határozzon meg egy következő felelős feladatot (Task), így egyetlen üzlet sem vész el a folyamatban.')"><span>&rarr;</span> Értékesítési csővezetékek (Pipelines) kezelése</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Feladatok (Tasks) és határidők nyomon követése', 'Minden ügyfélkártyán belül létrehozhat feladatokat határidővel és felelőssel. A rendszer automatikus emlékeztető e-mailt küld a határidő lejárta előtt, illetve a napi teendők listájában is kiemelten kezeljük az esedékes teendőket, hogy az értékesítők fókuszáltak maradhassanak.')"><span>&rarr;</span> Feladatok (Tasks) és határidők nyomon követése</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Lead pontozás és prioritások', 'Szelektálja automatikusan a legértékesebb érdeklődőket! A lead pontozás segítségével pontértékeket rendelhet az ügyfelek aktivitásához (pl. megnyitott e-mail, árajánlat megnyitás, kitöltött űrlap), így az értékesítő csapat a legforróbb üzleti lehetőségekre koncentrálhat.')"><span>&rarr;</span> Lead pontozás és prioritások meghatározása</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3: Integrációk -->
+            <div class="kb-category-card" style="background: var(--color-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.5rem; border-radius: 8px; color: var(--color-primary);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Rendszerintegrációk (API & Mail)</h3>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Google Workspace és Office 365 összekapcsolása', 'Szinkronizálja naptárát és levelezését zökkenőmentesen! Az integrációs központban egyetlen kattintással engedélyezheti a Google vagy Outlook OAuth kapcsolatot. Ezt követően minden kiküldött és bejövő ügyféllevelezés automatikusan iktatásra kerül a megfelelő kapcsolati lapon.')"><span>&rarr;</span> Google Workspace és Office 365 összekapcsolása</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Számlázz.hu és Billingo integráció beállítása', 'Kapcsolja össze CRM rendszerét kedvenc számlázójával. A megnyert üzletek státuszváltozásakor a rendszer képes automatikusan díjbekérőt vagy számlát generálni és kiküldeni. Ehhez mindössze az API kulcs megadására van szükség a Számlázás Beállítások modulban.')"><span>&rarr;</span> Számlázz.hu és Billingo integráció beállítása</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4: Adatvédelem -->
+            <div class="kb-category-card" style="background: var(--color-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.5rem; border-radius: 8px; color: var(--color-primary);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Adatbiztonság (GDPR)</h3>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle(' GDPR megfeleltetés a CRM Bázisban', 'A CRM Bázis teljes mértékben felkészült a szigorú uniós GDPR előírások betartására. Rendszerünkben egyetlen gombnyomással exportálhatja vagy véglegesen törölheti (az elfeledtetés jogának megfelelően) bármelyik ügyfél összes tárolt adatát és előzményét, automatizált jegyzőkönyvet generálva erről.')"><span>&rarr;</span> GDPR megfeleltetés és adatkezelési szabályok</a></li>
+                    <li><a href="#" class="kb-link" style="color: var(--color-text); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;" onclick="openArticle('Kétlépcsős azonosítás (2FA) beállítása', 'Növelje fiókja biztonságát a kétlépcsős azonosítással (2FA). A funkció bekapcsolása után a bejelentkezéshez a jelszón kívül egy okostelefonos hitelesítő app (pl. Google Authenticator) által generált egyszeri kódot is meg kell adni.')"><span>&rarr;</span> Kétlépcsős azonosítás (2FA) beállítása a csapatnak</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Article Detail Overlay Modal style -->
+        <div id="kbArticleModal" style="display: none; background: var(--color-surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: var(--shadow-lg); margin-bottom: 4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem;">
+                <h2 id="kbArticleTitle" style="margin: 0; font-family: var(--font-display); color: var(--color-text);">Cikk címe</h2>
+                <button onclick="closeArticle()" style="background: none; border: none; font-size: 1.75rem; cursor: pointer; color: var(--color-text-muted); line-height: 1;">&times;</button>
+            </div>
+            <div id="kbArticleContent" style="color: var(--color-text); line-height: 1.8; font-size: 1.05rem;">
+                Tartalom...
+            </div>
+            <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.85rem; color: var(--color-text-muted);">Hasznosnak találta ezt a cikket?</span>
+                <div style="display: flex; gap: 1rem;">
+                    <button onclick="voteHelpful(true)" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg>
+                        Igen, hasznos volt
+                    </button>
+                    <button onclick="voteHelpful(false)" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018c.163 0 .326.02.485.06L17 4m-7 10V19a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2M17 4h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"></path></svg>
+                        Nem segített
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Notice -->
+        <div style="background: var(--color-surface); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--color-border); text-align: center; max-width: 800px; margin: 5rem auto 2rem; box-shadow: var(--shadow-sm);">
+            <h3 style="margin-bottom: 0.75rem;">Nem találta a választ?</h3>
+            <p style="color: var(--color-text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Szakértő magyar nyelvű ügyfélkapcsolati csapatunk készséggel áll az Ön rendelkezésére!</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{{ '/kapcsolat' | relative_url }}" class="btn btn-primary" style="padding: 0.85rem 2rem;">Írjon nekünk üzenetet</a>
+                <a href="{{ '/ajanlatkeres.html' | relative_url }}" class="btn btn-outline" style="padding: 0.85rem 2rem;">Személyes konzultáció</a>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<script>
+    function openArticle(title, content) {
+        document.getElementById('kbArticleTitle').textContent = title;
+        document.getElementById('kbArticleContent').innerHTML = '<p>' + content + '</p>';
+        
+        const grid = document.getElementById('kbGrid');
+        const modal = document.getElementById('kbArticleModal');
+        
+        grid.style.display = 'none';
+        modal.style.display = 'block';
+        modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function closeArticle() {
+        const grid = document.getElementById('kbGrid');
+        const modal = document.getElementById('kbArticleModal');
+        
+        modal.style.display = 'none';
+        grid.style.display = 'grid';
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function voteHelpful(isHelpful) {
+        alert(isHelpful ? "Köszönjük visszajelzését!" : "Sajnáljuk, folyamatosan javítjuk cikkeinket. Köszönjük az észrevételt!");
+    }
+
+    // Live search filter
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('kbSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase().trim();
+                const cards = document.querySelectorAll('.kb-category-card');
+                
+                cards.forEach(card => {
+                    const links = card.querySelectorAll('.kb-link');
+                    let sectionHasMatch = false;
+                    
+                    links.forEach(link => {
+                        const text = link.textContent.toLowerCase();
+                        if (text.includes(term)) {
+                            link.style.display = 'flex';
+                            sectionHasMatch = true;
+                        } else {
+                            link.style.display = 'none';
+                        }
+                    });
+                    
+                    if (sectionHasMatch || term === '') {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+</script>

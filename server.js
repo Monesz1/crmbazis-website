@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -56,6 +57,30 @@ app.get('/learn.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 
 app.get('/about', (req, res) => res.send(renderJekyll(path.join(__dirname, 'about.md'))));
 app.get('/about.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'about.md'))));
 
+app.get('/kapcsolat', (req, res) => res.send(renderJekyll(path.join(__dirname, 'kapcsolat.md'))));
+app.get('/kapcsolat.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'kapcsolat.md'))));
+
+app.get('/a-csapatrol', (req, res) => res.send(renderJekyll(path.join(__dirname, 'a-csapatrol.md'))));
+app.get('/a-csapatrol.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'a-csapatrol.md'))));
+
+app.get('/alap-csomag', (req, res) => res.send(renderJekyll(path.join(__dirname, 'alap-csomag.html'))));
+app.get('/alap-csomag.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'alap-csomag.html'))));
+
+app.get('/pro-csomag', (req, res) => res.send(renderJekyll(path.join(__dirname, 'pro-csomag.html'))));
+app.get('/pro-csomag.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'pro-csomag.html'))));
+
+app.get('/premium-csomag', (req, res) => res.send(renderJekyll(path.join(__dirname, 'premium-csomag.html'))));
+app.get('/premium-csomag.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'premium-csomag.html'))));
+
+app.get('/araink', (req, res) => res.send(renderJekyll(path.join(__dirname, 'araink.html'))));
+app.get('/araink.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'araink.html'))));
+
+app.get('/tudasbazis', (req, res) => res.send(renderJekyll(path.join(__dirname, 'tudasbazis.html'))));
+app.get('/tudasbazis.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'tudasbazis.html'))));
+
+app.get('/ajanlatkeres', (req, res) => res.send(renderJekyll(path.join(__dirname, 'ajanlatkeres.html'))));
+app.get('/ajanlatkeres.html', (req, res) => res.send(renderJekyll(path.join(__dirname, 'ajanlatkeres.html'))));
+
 // API Routes
 app.post('/api/register', async (req, res) => {
     try {
@@ -69,7 +94,7 @@ app.post('/api/register', async (req, res) => {
         const cleanCompanyName = company_name.toLowerCase().replace(/[^a-z0-9]/g, '');
         const subdomain = `${cleanCompanyName}.opensoft.hu`;
 
-        // Log the registration (since GitHub integration is removed)
+        // Log the registration
         console.log('New Registration Received:', {
             subdomain,
             company_name,
@@ -79,8 +104,38 @@ app.post('/api/register', async (req, res) => {
             mobile
         });
 
-        // Simulate a slight delay for realism
-        await new Promise(resolve => setTimeout(resolve, 800));
+        // Call GitHub REST API
+        const githubToken = process.env.GITHUB_TOKEN;
+        if (githubToken) {
+            const githubResponse = await fetch('https://api.github.com/repos/Monesz1/vtiger-opensoft/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${githubToken}`,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    event_type: 'display-contact',
+                    client_payload: {
+                        subdomain,
+                        company_name,
+                        last_name,
+                        first_name,
+                        email,
+                        mobile
+                    }
+                })
+            });
+
+            if (!githubResponse.ok) {
+                const errorText = await githubResponse.text();
+                console.error('GitHub API error:', githubResponse.status, errorText);
+            } else {
+                console.log('GitHub API call successful');
+            }
+        } else {
+            console.warn('GITHUB_TOKEN is not set in environment variables.');
+        }
 
         res.json({ success: true, message: 'Sikeres regisztráció!', subdomain });
     } catch (error) {
