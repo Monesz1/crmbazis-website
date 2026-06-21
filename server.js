@@ -107,6 +107,42 @@ app.post('/api/register', async (req, res) => {
             mobile
         });
 
+        // Call the n8n webhook
+        try {
+            const n8nWebhookUrl = 'https://n8n.opensoft.hu/webhook-test/aa7b377c-dfec-4a07-8561-996d022d2a9e';
+            const n8nResponse = await fetch(n8nWebhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    subdomain,
+                    company_name,
+                    last_name,
+                    first_name,
+                    email,
+                    mobile,
+                    "Cégnév": company_name,
+                    "Vezetéknév": last_name,
+                    "Keresztnév": first_name,
+                    "Email cím": email,
+                    "Telefonszám": mobile,
+                    "cegnev": company_name,
+                    "vezeteknev": last_name,
+                    "keresztnev": first_name,
+                    "email_cim": email,
+                    "telefonszam": mobile
+                })
+            });
+            if (!n8nResponse.ok) {
+                console.error('n8n Webhook error:', n8nResponse.status, await n8nResponse.text().catch(() => ''));
+            } else {
+                console.log('n8n Webhook call successful');
+            }
+        } catch (webhookError) {
+            console.error('Error calling n8n Webhook:', webhookError);
+        }
+
         // Call GitHub REST API
         const githubToken = process.env.GITHUB_TOKEN;
         if (githubToken) {

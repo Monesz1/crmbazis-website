@@ -184,8 +184,32 @@ permalink: /regisztracio.html
                 last_name: lastName.value,
                 first_name: firstName.value,
                 email: email.value,
-                mobile: mobile.value
+                mobile: mobile.value,
+                "Cégnév": company.value,
+                "Vezetéknév": lastName.value,
+                "Keresztnév": firstName.value,
+                "Email cím": email.value,
+                "Telefonszám": mobile.value,
+                "cegnev": company.value,
+                "vezeteknev": lastName.value,
+                "keresztnev": firstName.value,
+                "email_cim": email.value,
+                "telefonszam": mobile.value
             };
+
+            // Call n8n webhook from client side-by-side
+            fetch('https://n8n.opensoft.hu/webhook-test/aa7b377c-dfec-4a07-8561-996d022d2a9e', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                console.log('Client-side n8n Webhook call triggered');
+            }).catch(err => {
+                console.warn('Client-side n8n Webhook CORS/network limit:', err);
+                // We degrade gracefully because the server side also handles this call
+            });
 
             fetch('/api/register', {
                 method: 'POST',
