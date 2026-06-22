@@ -109,7 +109,7 @@ app.post('/api/register', async (req, res) => {
 
         // Call the n8n webhook
         try {
-            const n8nWebhookUrl = 'https://n8n.opensoft.hu/webhook-test/aa7b377c-dfec-4a07-8561-996d022d2a9e';
+            const n8nWebhookUrl = 'https://n8n.opensoft.hu/webhook/aa7b377c-dfec-4a07-8561-996d022d2a9e';
             const n8nResponse = await fetch(n8nWebhookUrl, {
                 method: 'POST',
                 headers: {
