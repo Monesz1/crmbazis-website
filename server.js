@@ -2,7 +2,63 @@ require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 const app = express();
+
+// Robust HTTP/HTTPS POST helper mimicking fetch API to ensure compatibility across all Node versions
+function requestHttps(urlStr, method, data, customHeaders = {}) {
+    return new Promise((resolve, reject) => {
+        try {
+            const url = new URL(urlStr);
+            const payload = data ? JSON.stringify(data) : null;
+            
+            const headers = {
+                'Content-Type': 'application/json',
+                ...customHeaders
+            };
+            
+            if (payload) {
+                headers['Content-Length'] = Buffer.byteLength(payload);
+            }
+
+            const options = {
+                hostname: url.hostname,
+                port: url.port || (url.protocol === 'https:' ? 443 : 80),
+                path: url.pathname + url.search,
+                method: method.toUpperCase(),
+                headers: headers
+            };
+
+            const req = https.request(options, (res) => {
+                let body = '';
+                res.on('data', (chunk) => body += chunk);
+                res.on('end', () => {
+                    resolve({
+                        ok: res.statusCode >= 200 && res.statusCode < 300,
+                        status: res.statusCode,
+                        headers: res.headers,
+                        text: async () => body,
+                        json: async () => {
+                            if (!body) return {};
+                            return JSON.parse(body);
+                        }
+                    });
+                });
+            });
+
+            req.on('error', (err) => {
+                reject(err);
+            });
+
+            if (payload) {
+                req.write(payload);
+            }
+            req.end();
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
 
 // Middleware
 app.use(express.json());
@@ -110,29 +166,23 @@ app.post('/api/register', async (req, res) => {
         // Call the n8n webhook
         try {
             const n8nWebhookUrl = 'https://n8n.opensoft.hu/webhook/aa7b377c-dfec-4a07-8561-996d022d2a9e';
-            const n8nResponse = await fetch(n8nWebhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    subdomain,
-                    company_name,
-                    last_name,
-                    first_name,
-                    email,
-                    mobile,
-                    "Cégnév": company_name,
-                    "Vezetéknév": last_name,
-                    "Keresztnév": first_name,
-                    "Email cím": email,
-                    "Telefonszám": mobile,
-                    "cegnev": company_name,
-                    "vezeteknev": last_name,
-                    "keresztnev": first_name,
-                    "email_cim": email,
-                    "telefonszam": mobile
-                })
+            const n8nResponse = await requestHttps(n8nWebhookUrl, 'POST', {
+                subdomain,
+                company_name,
+                last_name,
+                first_name,
+                email,
+                mobile,
+                "Cégnév": company_name,
+                "Vezetéknév": last_name,
+                "Keresztnév": first_name,
+                "Email cím": email,
+                "Telefonszám": mobile,
+                "cegnev": company_name,
+                "vezeteknev": last_name,
+                "keresztnev": first_name,
+                "email_cim": email,
+                "telefonszam": mobile
             });
             if (!n8nResponse.ok) {
                 console.error('n8n Webhook error:', n8nResponse.status, await n8nResponse.text().catch(() => ''));
@@ -146,14 +196,8 @@ app.post('/api/register', async (req, res) => {
         // Call GitHub REST API
         const githubToken = process.env.GITHUB_TOKEN;
         if (githubToken) {
-            const githubResponse = await fetch('https://api.github.com/repos/Monesz1/vtiger-opensoft/dispatches', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${githubToken}`,
-                    'Accept': 'application/vnd.github+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
+            try {
+                const githubResponse = await requestHttps('https://api.github.com/repos/Monesz1/vtiger-opensoft/dispatches', 'POST', {
                     event_type: 'display-contact',
                     client_payload: {
                         subdomain,
@@ -163,14 +207,20 @@ app.post('/api/register', async (req, res) => {
                         email,
                         mobile
                     }
-                })
-            });
+                }, {
+                    'Authorization': `Bearer ${githubToken}`,
+                    'Accept': 'application/vnd.github+json',
+                    'User-Agent': 'vTiger-Opensoft-App'
+                });
 
-            if (!githubResponse.ok) {
-                const errorText = await githubResponse.text();
-                console.error('GitHub API error:', githubResponse.status, errorText);
-            } else {
-                console.log('GitHub API call successful');
+                if (!githubResponse.ok) {
+                    const errorText = await githubResponse.text();
+                    console.error('GitHub API error:', githubResponse.status, errorText);
+                } else {
+                    console.log('GitHub API call successful');
+                }
+            } catch (githubError) {
+                console.error('Error calling GitHub API:', githubError);
             }
         } else {
             console.warn('GITHUB_TOKEN is not set in environment variables.');

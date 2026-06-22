@@ -218,7 +218,11 @@ permalink: /regisztracio.html
                 },
                 body: JSON.stringify(payload)
             })
-            .then(res => res.json())
+            .then(res => {
+                return res.json().catch(() => {
+                    throw new Error('Szerveroldali hiba történt. Kérjük, próbálja újra.');
+                });
+            })
             .then(data => {
                 if (data.success) {
                     grid.style.display = 'none';
@@ -236,7 +240,7 @@ permalink: /regisztracio.html
             })
             .catch(err => {
                 console.error(err);
-                alert('Hálózati hiba történt. Kérjük, próbálja újra.');
+                alert('A kiszolgáló átmenetileg nem elérhető. Kérjük, próbálja újra később.');
                 submitBtn.disabled = false;
                 btnText.style.display = 'block';
                 btnSpinner.style.display = 'none';
